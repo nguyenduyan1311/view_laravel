@@ -60,7 +60,7 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <hr>
-        <a href="{{ route('tasks.index') }}">< Back</a>
+        <a href="{{ route('tasks.index') }}">Back</a>
     </div>
 </div>
 <!-- Bootstrap JS -->

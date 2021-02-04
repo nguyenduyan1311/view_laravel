@@ -29,6 +29,7 @@
                     <th scope="col">Content</th>
                     <th scope="col">Created</th>
                     <th scope="col">Due Date</th>
+                    <th>Ảnh</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,7 +48,7 @@
                             <td>{{ $task->created_at }}</td>
                             <td>{{ $task->due_date }}</td>
                             <td>
-                                <img src="{{ asset('storage/images/' . $task->image) }}" alt="" style="width: 150px">
+                                <img src="{{ asset('storage/' . $task->image) }}" alt="" style="width: 150px">
                             </td>
                         </tr>
                     @endforeach

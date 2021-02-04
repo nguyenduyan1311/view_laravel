@@ -47,23 +47,10 @@ class TaskController extends Controller
         $task->due_date = $request->inputDueDate;
 
         // Nếu file không tồn tại thì trường image gán bằng NULL
-        if (!$request->hasFile('inputFile')) {
-            $task->image = $request->inputFile;
-        } else {
-            $file = $request->file('inputFile');
-
-            //Lấy ra định dạng và tên mới của file từ request
-            $fileExtension = $file->getClientOriginalExtension();
-            $fileName = $request->inputFileName;
-
-            // Gán tên mới cho file trước khi lưu lên server
-            $newFileName = "$fileName.$fileExtension";
-
-            //Lưu file vào thư mục storage/app/public/image với tên mới
-            $request->file('inputFile')->storeAs('public/images', $newFileName);
-
-            // Gán trường image của đối tượng task với tên mới
-            $task->image = $newFileName;
+        if ($request->hasFile('inputFile')) {
+            $image = $request->file('inputFile');
+            $path = $image->store('images', 'public');
+            $task->image = $path;
         }
         $task->save();
 
